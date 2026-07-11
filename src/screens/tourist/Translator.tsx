@@ -20,11 +20,11 @@ export function Translator() {
   const [activeSituation, setActiveSituation] = useState<Situation | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const [speechSupported, setSpeechSupported] = useState(true);
 
   useEffect(() => {
-    const SR = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SR) {
       setSpeechSupported(false);
       return;
@@ -33,7 +33,7 @@ export function Translator() {
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = language === "ar" ? "ar-DZ" : language === "fr" ? "fr-FR" : "en-US";
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
+    recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
       setSearchQuery(transcript);
       setIsListening(false);
