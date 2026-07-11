@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { I18nProvider } from "./i18n/i18n";
 import { useAppStore } from "./store/appStore";
 import { RoleSwitcher } from "./components/layout/RoleSwitcher";
@@ -67,10 +67,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <I18nProvider>
         <AppContent />
       </I18nProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
